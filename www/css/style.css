@@ -1,0 +1,354 @@
+body {
+	font-family: "Georgia", serif;
+	background-color: #fff;
+}
+
+p {
+	margin: 10px 0;
+}
+
+#wordmark {
+	background:url("../images/wordMarkBkg.png") repeat-x scroll center bottom #FFFFFF;
+	text-align: center;
+}
+
+#wordmark img {
+	margin-bottom: -3px;
+}
+
+div#container {
+	margin: 0px auto;
+	width: 755px;
+}
+
+div#header {
+	background-color: #fff;
+	color: #000;
+	margin: 0px;
+	padding: 0px;
+	/*
+	border: 1px solid #666;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	*/
+
+}
+
+h1, h2, h3, h4 {
+	font-family: Georgia, serif;
+}
+
+h3.msg {
+	color: #900;
+	margin: 10px 0 0 0;
+}
+
+div#header h1 {
+	font-size: 60px;
+	font-weight: normal;
+	float: left;
+}
+
+div#header h4 {
+	font-weight: normal;
+	float: right;
+	margin-right: 6px;
+	margin-top: 10px;
+}
+
+div#header a.delete {
+	color:#c00;
+}
+
+div#main {
+	margin 0;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding: 15px 20px;
+}
+
+#footer {
+	margin: 6px 0;
+} 
+
+#footer div.brand {
+	font-family: Arial, sans-serif;
+	padding: 10px 10px 10px 120px;
+	color: #999;
+	background-color: #ccc;
+	height: 40px;
+	vertical-align: bottom;
+	border: 1px solid #ccc;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding: 15px 15px 15px 15px;
+}
+#footer a {
+	color:#666;
+}
+#footer table.logo {
+	float: left;
+	margin: 4px 2px 0 0;
+	border-spacing:1px;
+}
+#footer table.logo td {
+	padding: 0;
+	width: 5px;
+	height: 5px;
+	line-height: 5px;
+	font-size: 5px;
+	background-color: #777;
+}
+
+#footer div.label {
+	letter-spacing: -1px;
+	padding: 0;
+	font-size: 32px;
+	line-height: 40px;
+}
+#footer div.label strong {
+	font-size: 40px;
+}
+
+ul {
+	margin: 10px 0;
+}
+
+li  {
+	margin: 5px 0;
+}
+
+
+input.delete {
+	float: right;
+	margin-right: 0px;
+}
+
+input.delete:hover {
+	background-color: #c00;
+	color: #fff;
+}
+
+div.controls {
+	float: right;
+	margin: 6px 0;
+}
+
+dl {
+	margin: 10px 20px 10px 0;
+}
+dt {
+	background-color: #e3e3ff;
+	background-color: #aab;
+	width: 100%; 
+	text-align: left; 
+	font-weight: bold; 
+	padding: 4px 10px;
+	margin 8px 0;
+	color: #000; 
+
+}
+dd { 
+	margin: 6px; 
+	padding: 2px 0px; 
+	min-height: 20px;
+}
+
+label {
+	display: block;
+	margin-top: 12px;
+	margin-bottom: 6px;
+}
+
+form {
+	margin: 0;
+}
+
+form label {
+	background-color: #fff;
+	padding: 0;
+	margin-bottom: 2px;
+	color: #333;
+}
+
+form p {
+	margin: 8px 0;
+}
+
+form input[type="text"] {
+	width: 400px;
+}
+
+form[action="proposal/form"] input {
+	font-size: 20px;
+	color: #33a;
+}
+
+span.active {
+	font-weight: bold;
+	color: #333;
+	margin-left: 8px;
+}
+span.inactive {
+	font-weight: normal;
+	color: #999;
+	margin-left: 8px;
+}
+
+textarea {
+	margin: 0;
+	width: 100%;
+}
+
+pre {
+	background-color: #eee;
+	padding: 20px;
+}
+
+#instruction_form form {
+	-moz-border-radius:5px 5px 5px 5px;
+	border:1px solid #999999;
+	margin:18px 0;
+	padding:8px 12px 12px;
+}
+
+#section_preview  {
+	-moz-border-radius:5px 5px 5px 5px;
+	border:4px solid #fc0;
+	margin:18px 0;
+	padding:8px 12px 12px;
+}
+
+#section_preview form {
+	border:0;
+	margin:6px 0;
+	padding:0;
+}
+
+textarea.small {
+	height: 60px;
+}
+textarea.medium {
+	height: 200px;
+}
+textarea.large {
+	height: 350px;
+}
+
+div.instruction_text {
+	padding: 2px 10px;
+	background-color: #f3f3f3;
+	background-color: #eee;
+	font-style: italic;
+}
+
+input[type="text"].sort_order {
+	width: 2em;
+}
+
+input[type="text"].int {
+	width: 4em;
+}
+
+input[type="text"].short_desc {
+	width: 200px;
+}
+
+a.delete {
+	color: #c00;
+}
+
+form.budget_item {
+	width: 90%;
+	-moz-border-radius:5px 5px 5px 5px;
+	border:1px solid #999999;
+	margin:18px 0;
+	padding:8px 12px 12px;
+}
+
+dl.budget_item_form dt {
+	padding: 2px 10px;
+	background-color: #fd9;
+	color: #555;
+}
+
+dl.budget_item_form dd {
+	padding: 2px;
+}
+
+table.budget_items {
+	margin: 12px 0;
+	border-collapse: collapse;
+}
+
+table.budget_items th {
+	width: 140px;
+	padding: 3px;
+	border: 1px solid #999;
+	text-align: center;
+	background-color: #ddd;
+}
+
+table.budget_items td {
+	padding: 3px;
+	border: 1px solid #999;
+	text-align: right;
+}
+
+table.budget_items td.link {
+	width: 50px;
+}
+
+span.admin {
+	color: red;
+}
+
+span.reviewer {
+	color: green;
+}
+
+dl.propusers dt {
+	background-color: #fd9;
+	color: #555;
+}
+
+dl.user_proposals dt {
+	background-color: #fd9;
+	color: #555;
+}
+
+form[method="delete"] input[type="submit"]:hover {
+	background-color: red;
+}
+
+ul#reviewer_comments li {
+	margin: 10px;
+	padding: 5px;
+	background-color: #f3f3f3;
+}
+
+ul#reviewer_comments li span.info {
+	font-size: 10px;
+}
+
+span.pending {
+	font-family: sans-serif;
+	font-weight: bold;
+	color: #c00;
+}
+
+span.pending a {
+	font-weight: normal;
+	font-size: 12px;
+	color: #339;
+}
+
+span.msg {
+	color: #900;
+	margin-left: 10px;
+}

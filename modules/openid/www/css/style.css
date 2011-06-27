@@ -1,0 +1,9 @@
+input#openid_identifier
+{
+	background-color: #ffffff;
+	background-image: url(../images/openid-logo-small.gif);
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: 0pt 50%;
+	padding-left: 18px;
+}
