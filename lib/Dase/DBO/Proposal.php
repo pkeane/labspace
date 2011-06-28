@@ -7,6 +7,7 @@ class Dase_DBO_Proposal extends Dase_DBO_Autogen_Proposal
 	public $dept;
 	public $creator;
 	public $attachments = array();
+	public $admin_attachments = array();
 	public $budget_items = array();
 	public $read_users = array();
 	public $write_users = array();
@@ -120,6 +121,16 @@ class Dase_DBO_Proposal extends Dase_DBO_Autogen_Proposal
 		}
 	}
 
+	public function getAdminAttachments()
+	{
+		$att = new Dase_DBO_Attachment($this->db);
+		$att->proposal_id = $this->id;
+		$att->is_admin = 1;
+		$att->orderBy('uploaded');
+		$this->admin_attachments = $att->findAll(1);
+		return $this->attachments;
+	}
+
 	public function getAttachments()
 	{
 		$types = new Dase_DBO_AttachmentType($this->db);
@@ -137,7 +148,10 @@ class Dase_DBO_Proposal extends Dase_DBO_Autogen_Proposal
 			} else {
 				$attachment->desc = $attachment->short_desc;
 			}
-			$this->attachments[] = $attachment;
+			//do NOT include admin attachments
+			if (!$attachment->is_admin) {
+					$this->attachments[] = $attachment;
+			}
 		}
 		return $this->attachments;
 	}
@@ -163,5 +177,12 @@ class Dase_DBO_Proposal extends Dase_DBO_Autogen_Proposal
 		return $this->budget_items;
 	}
 
-
+	public function getBudgetItemsCsv()
+	{
+			$csv = '"description","vendor/product note","price per unit","quantity","cost"'."\n";
+			foreach ($this->getBudgetItems() as $bi) {
+					$csv .= '"'.$bi->description.'","'.$bi->note.'","'.$bi->price.'","'.$bi->quantity.'","'.$bi->cost.'"'."\n";
+			}
+			return $csv;
+	}
 }

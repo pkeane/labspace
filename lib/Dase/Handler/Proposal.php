@@ -99,6 +99,7 @@ class Dase_Handler_Proposal extends Dase_Handler
 		$p->title = $r->get('title');
 		$p->created_by = $this->user->eid;
 		$p->created = date(DATE_ATOM);
+		$p->workflow_status = 'created';
 		$p->dept_id = $r->get('dept_id');
 		if (!$p->title || !$p->dept_id) {
 			$params['msg'] = "Please enter title and select a department";
@@ -127,9 +128,15 @@ class Dase_Handler_Proposal extends Dase_Handler
 		$propsec->proposal_id = $p->id;
 		if ($propsec->findOne()) {
 			$propsec->text = $r->get('text');
+			$propsec->date_start = $r->get('date_start');
+			$propsec->date_end = $r->get('date_end');
+			$propsec->dollar_amount = $r->get('dollar_amount');
 			$propsec->update();
 		} else {
 			$propsec->text = $r->get('text');
+			$propsec->date_start = $r->get('date_start');
+			$propsec->date_end = $r->get('date_end');
+			$propsec->dollar_amount = $r->get('dollar_amount');
 			$propsec->insert();
 		}
 		$r->renderRedirect('proposal/'.$p->id.'#'.$sec->ascii_id);
@@ -154,6 +161,15 @@ class Dase_Handler_Proposal extends Dase_Handler
 		}
 	}
 
+	public function getBudgetItemsCsv($r)
+	{
+		$p = new Dase_DBO_Proposal($this->db);
+		if (!$p->load($r->get('id'))) {
+			$r->renderResponse(404);
+		}
+		$r->renderResponse($p->getBudgetItemsCsv());
+	}
+
 	public function postToBudgetItems($r) 
 	{
 		$p = new Dase_DBO_Proposal($this->db);
@@ -166,6 +182,7 @@ class Dase_Handler_Proposal extends Dase_Handler
 
 		$bi = new Dase_DBO_BudgetItem($this->db);
 		$bi->description = $r->get('description');
+		$bi->note = $r->get('note');
 		$bi->proposal_id = $p->id;
 		$bi->budget_line_id = $r->get('budget_line_id');
 		$bi->quantity = $r->get('quantity');
@@ -298,6 +315,7 @@ class Dase_Handler_Proposal extends Dase_Handler
 		
 		$p->submitted = date(DATE_ATOM);
 		$p->submitted_by = $this->user->eid;
+		$p->workflow_status = 'proposed';
 		$p->update();
 		$r->renderRedirect('proposal/'.$p->id);
 	}

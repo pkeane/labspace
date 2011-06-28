@@ -12,6 +12,7 @@
 		<li><a href="admin/attachment_types">configure attachment types</a></li>
 		<li><a href="directory">add a user</a></li>
 		<li><a href="admin/users">list users</a></li>
+		<li><a href="admin/proposals">list all proposals</a></li>
 		<li><a href="admin/depts">Manage Departments</a></li>
 		{/if}
 	</ul>

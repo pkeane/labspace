@@ -13,7 +13,7 @@ class Dase_DBO_Autogen_ProposalSection extends Dase_DBO
 {
 	public function __construct($db,$assoc = false) 
 	{
-		parent::__construct($db,'proposal_section', array('proposal_id','section_id','text'));
+		parent::__construct($db,'proposal_section', array('proposal_id','section_id','text','date_start','date_end','dollar_amount'));
 		if ($assoc) {
 			foreach ( $assoc as $key => $value) {
 				$this->$key = $value;

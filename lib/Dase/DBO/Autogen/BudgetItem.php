@@ -13,7 +13,7 @@ class Dase_DBO_Autogen_BudgetItem extends Dase_DBO
 {
 	public function __construct($db,$assoc = false) 
 	{
-		parent::__construct($db,'budget_item', array('proposal_id','price','description','quantity','budget_line_id','created','created_by'));
+		parent::__construct($db,'budget_item', array('proposal_id','price','description','note','quantity','budget_line_id','created','created_by'));
 		if ($assoc) {
 			foreach ( $assoc as $key => $value) {
 				$this->$key = $value;

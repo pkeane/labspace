@@ -13,7 +13,7 @@ class Dase_DBO_Autogen_Section extends Dase_DBO
 {
 	public function __construct($db,$assoc = false) 
 	{
-		parent::__construct($db,'section', array('ascii_id','name','instruction_text','textbox_size','sort_order','type','is_active'));
+		parent::__construct($db,'section', array('ascii_id','name','instruction_text','textbox_size','sort_order','type','is_active','show_date_input','show_dollar_input'));
 		if ($assoc) {
 			foreach ( $assoc as $key => $value) {
 				$this->$key = $value;

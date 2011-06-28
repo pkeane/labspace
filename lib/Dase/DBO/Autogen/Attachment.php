@@ -13,7 +13,7 @@ class Dase_DBO_Autogen_Attachment extends Dase_DBO
 {
 	public function __construct($db,$assoc = false) 
 	{
-		parent::__construct($db,'attachment', array('proposal_id','unique_id','attachment_type_id','mime_type','short_desc','name','path','uploaded_by','uploaded'));
+		parent::__construct($db,'attachment', array('proposal_id','unique_id','attachment_type_id','mime_type','short_desc','name','path','uploaded_by','uploaded','is_admin'));
 		if ($assoc) {
 			foreach ( $assoc as $key => $value) {
 				$this->$key = $value;

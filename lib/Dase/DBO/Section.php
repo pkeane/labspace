@@ -5,6 +5,9 @@ require_once 'Dase/DBO/Autogen/Section.php';
 class Dase_DBO_Section extends Dase_DBO_Autogen_Section 
 {
 	public $proposal_data = '';
+	public $date_start = '';
+	public $date_end = '';
+	public $dollar_amount = '';
 
 	public static function sortAll($db)
 	{
@@ -27,6 +30,9 @@ class Dase_DBO_Section extends Dase_DBO_Autogen_Section
 		$ps->proposal_id = $proposal_id;
 		if ($ps->findOne()) {
 			$this->proposal_data = $ps->text;
+			$this->date_end = $ps->date_end;
+			$this->date_start = $ps->date_start;
+			$this->dollar_amount = $ps->dollar_amount;
 		}
 		return $this->proposal_data;
 	}

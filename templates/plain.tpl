@@ -35,6 +35,7 @@
 		<table id="budget_items" class="budget_items">
 			<tr>
 				<th>description</th>
+				<th>vendor/product note</th>
 				<th>price per unit</th>
 				<th>quantity</th>
 				<th>total</th>
@@ -45,6 +46,9 @@
 			<tr>
 				<td>
 					{$budget_item->description}
+				</td>
+				<td>
+					{$budget_item->note}
 				</td>
 				<td>
 					$ {$budget_item->price|string_format:"%.2f"}
@@ -58,7 +62,7 @@
 			</tr>
 			{/foreach}
 			<tr>
-				<th colspan="3">total budget:</th>
+				<th colspan="4">total budget:</th>
 				<td>$ {$total|string_format:"%.2f"}</td>
 				<td class="link"></td>
 			</tr>

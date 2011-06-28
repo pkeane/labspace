@@ -22,16 +22,42 @@
 		<div class="instruction_text">{$section->instruction_text|markdown}</div>
 		<div>
 			{$section->proposal_data|markdown|nl2br}
+			<dl class="section">
+				{if $section->show_date_input}
+				<dt>Date Start</dt>
+				<dd>{$section->date_start}</dd>
+				<dt>Date End</dt>
+				<dd>{$section->date_end}</dd>
+				{/if}
+				{if $section->show_dollar_input}
+				<dt>Dollar Amount</dt>
+				<dd>$ {$section->dollar_amount}</dd>
+				{/if}
+			</dl>
 			{if $section->proposal_data}
 			<a href="#" class="toggle" id="toggle_{$section->ascii_id}">[edit]</a>
 			{/if}
 		</div>
 		{if 'user_input' == $section->type}
 		<div id="target_{$section->ascii_id}" {if $section->proposal_data}class="hide"{/if}>
-			<form method="post" action="proposal/{$proposal->id}/{$section->ascii_id}">
+			<form class="section" method="post" action="proposal/{$proposal->id}/{$section->ascii_id}">
 				<p>
 				<textarea id="textarea_{$section->ascii_id}" class="{$section->textbox_size}" name="text">{$section->proposal_data}</textarea>
 				</p>
+				{if $section->show_date_input}
+				<p>
+				<label for="date_start">Date Start (mm-dd-yyyy)</label>
+				<input value="{$section->date_start}"  class="date" type="text" placeholder="mm-dd-yyyy" name="date_start">
+				<label for="date_end">Date End (mm-dd-yyyy)</label>
+				<input value="{$section->date_end}" class="date" type="text" placeholder="mm-dd-yyyy" name="date_end">
+				</p>
+				{/if}
+				{if $section->show_dollar_input}
+				<p>
+				<label for="dollar_amount">Dollar Amount</label>
+				$ <input class="int" type="text" value="{$section->dollar_amount}" name="dollar_amount">
+				</p>
+				{/if}
 				<p>
 				<input id="submit_{$section->ascii_id}" type="submit" value="update {$section->name}">
 				<span id="updated_{$section->ascii_id}" class="hide pending"> &lt;- Please save your changes! <a href="#">[dismiss]</a></span>
@@ -75,6 +101,7 @@
 		<table id="budget_items" class="budget_items">
 			<tr>
 				<th>description</th>
+				<th>vendor/product note</th>
 				<th>price per unit</th>
 				<th>quantity</th>
 				<th>total</th>
@@ -85,6 +112,9 @@
 			<tr>
 				<td>
 					{$budget_item->description}
+				</td>
+				<td>
+					{$budget_item->note}
 				</td>
 				<td>
 					$ {$budget_item->price|string_format:"%.2f"}
@@ -101,7 +131,7 @@
 			</tr>
 			{/foreach}
 			<tr>
-				<th colspan="3">total budget:</th>
+				<th colspan="4">total budget:</th>
 				<td>$ {$total|string_format:"%.2f"}</td>
 				<td class="link"></td>
 			</tr>
@@ -120,9 +150,14 @@
 				OR enter short description:
 				<input class="short_desc" type="text" name="description">
 				</dd>
+				<dt>vendor/product note</dt>
+				<dd>
+				include any applicable information: vendor name, product code, etc.
+				<input type="text"name="note">
+				</dd>
 				<dt>price</dt>
 				<dd>
-				$<input type="text" class="int" name="price">
+				$ <input type="text" class="int" name="price">
 				</dd>
 				<dt>quantity</dt>
 				<dd>

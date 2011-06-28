@@ -352,3 +352,58 @@ span.msg {
 	color: #900;
 	margin-left: 10px;
 }
+
+div.admin_props h3 {
+	background-color: #ddd;
+	padding: 6px;
+	margin: 16px 0 6px 0;
+}
+
+table.proposals {
+	width: 100%;
+}
+table.proposals th {
+	text-align: left;
+	padding: 5px 10px;
+	background-color: #eee;
+}
+table.proposals th.title {
+	width: 50%;
+}
+table.proposals td {
+	padding: 2px 10px;
+}
+
+::-webkit-input-placeholder {
+	color: #999;
+}
+
+:-moz-placeholder {
+ color: #999;
+}
+
+input[type="text"].date {
+	width: 10em;
+}
+
+dl.section {
+	margin: 10px 0px;
+	padding: 0px;
+}
+
+dl.section dt {
+	background-color: #fff;
+	width: 100%; 
+	text-align: left; 
+	font-weight: normal; 
+	margin 2px 0;
+	padding: 0;
+	color: #006; 
+
+}
+dl.section dd { 
+	margin: 0 0 0 20px; 
+	padding: 0px; 
+	min-height: 0px;
+}
+

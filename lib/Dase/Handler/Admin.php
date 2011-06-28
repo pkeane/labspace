@@ -10,6 +10,9 @@ class Dase_Handler_Admin extends Dase_Handler
 		'users' => 'users',
 		'user_form/{eid}' => 'user_form',
 		'proposals' => 'proposals',
+		'proposal/{id}' => 'proposal',
+		'proposal/{id}/status' => 'proposal_status',
+		'proposal/{id}/attachments' => 'proposal_attachments',
 		'depts' => 'depts',
 		'dept/{id}' => 'dept',
 		'dept/{id}/status' => 'dept_status',
@@ -27,6 +30,37 @@ class Dase_Handler_Admin extends Dase_Handler
 		} else {
 			$r->renderError(401);
 		}
+	}
+
+	public function postToProposalAttachments($r) 
+	{
+		$p = new Dase_DBO_Proposal($this->db);
+		if (!$p->load($r->get('id'))) {
+			$r->renderResponse(404);
+		}
+		$data_dir = MEDIA_DIR."/attachments";
+
+		$att = new Dase_DBO_Attachment($this->db);
+		$att->short_desc = $r->get('short_desc');
+		$att->uploaded_by = $this->user->eid;
+		$att->uploaded = date(DATE_ATOM);
+		$att->attachment_type_id = 0;
+		$att->proposal_id = $p->id;
+		$att->is_admin = 1;
+		$att->name = $_FILES['uploaded_file']['name'];
+		$tmp_path = $_FILES['uploaded_file']['tmp_name'];
+		$target_path = $data_dir.'/'."proposal_".$p->id.'_'.Dase_Util::dirify($att->name);
+
+		$att->unique_id = md5($target_path);
+		$att->mime_type = $_FILES['uploaded_file']['type'];
+		$att->path = $target_path;
+		if (move_uploaded_file($tmp_path,$target_path)) {
+			$att->insert();
+		} else{
+			$r->renderError(400,'no go '.$target_path.' '.$tmp_path);
+		}
+
+		$r->renderRedirect('admin/proposal/'.$p->id);
 	}
 
 	public function initTemplate($t)
@@ -125,7 +159,6 @@ class Dase_Handler_Admin extends Dase_Handler
 	public function getAdmin($r) 
 	{
 		$t = new Dase_Template($r);
-		$t->init($this);
 		$r->renderResponse($t->fetch('admin.tpl'));
 	}
 
@@ -137,6 +170,49 @@ class Dase_Handler_Admin extends Dase_Handler
 		$users->orderBy('name');
 		$t->assign('users', $users->findAll(1));
 		$r->renderResponse($t->fetch('admin_users.tpl'));
+	}
+
+	public function postToProposalStatus($r)
+	{
+		$t = new Dase_Template($r);
+		$prop = new Dase_DBO_Proposal($this->db);
+		$prop->load($r->get('id'));
+		$prop->workflow_status = $r->get('workflow_status');
+		$prop->update();
+		$r->renderRedirect('admin/proposal/'.$prop->id);
+	}
+
+	public function getProposal($r)
+	{
+		$t = new Dase_Template($r);
+		$prop = new Dase_DBO_Proposal($this->db);
+		$prop->load($r->get('id'));
+		$prop->getCreator();
+		$prop->getDept();
+		$prop->getAdminAttachments();
+		$prop->getBudgetItems();
+		$t->assign('proposal', $prop);
+		$r->renderResponse($t->fetch('admin_proposal.tpl'));
+	}
+
+	public function getProposals($r) 
+	{
+		$t = new Dase_Template($r);
+		$props = new Dase_DBO_Proposal($this->db);
+		$props->orderBy('submitted');
+		$set = array();
+		foreach ($props->findAll(1) as $p) {
+				if (!$p->workflow_status) {
+						$p->workflow_status = 'proposed';
+				}
+				if (!isset($set[$p->workflow_status])) {
+						$set[$p->workflow_status] = array();
+				}
+				$p->getCreator();
+				$set[$p->workflow_status][] = $p;
+		}
+		$t->assign('props', $set);
+		$r->renderResponse($t->fetch('admin_props.tpl'));
 	}
 
 	public function getUserForm($r) 
@@ -272,6 +348,8 @@ class Dase_Handler_Admin extends Dase_Handler
 				}
 				$section->type = $r->get('type');
 				$section->is_active = $r->get('is_active');
+				$section->show_date_input = $r->get('show_date_input');
+				$section->show_dollar_input = $r->get('show_dollar_input');
 				$section->textbox_size = $r->get('textbox_size');
 				$section->update();
 				$r->renderRedirect('admin/sections/'.$r->get('section'));
@@ -290,6 +368,8 @@ class Dase_Handler_Admin extends Dase_Handler
 			}
 			$section->type = $r->get('type');
 			$section->is_active = 1;
+			$section->show_date_input = $r->get('show_date_input');
+			$section->show_dollar_input = $r->get('show_dollar_input');
 			$section->insert();
 		}
 		$r->renderRedirect('admin/sections');

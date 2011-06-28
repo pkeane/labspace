@@ -21,6 +21,18 @@
 		<dd>
 		<div>
 			{$section->proposal_data|markdown|nl2br}
+			<dl class="section">
+				{if $section->show_date_input}
+				<dt>Date Start</dt>
+				<dd>{$section->date_start}</dd>
+				<dt>Date End</dt>
+				<dd>{$section->date_end}</dd>
+				{/if}
+				{if $section->show_dollar_input}
+				<dt>Dollar Amount</dt>
+				<dd>$ {$section->dollar_amount}</dd>
+				{/if}
+			</dl>
 		</div>
 		{if 'attachments' == $section->ascii_id}
 		<ul class="attachments">
@@ -36,6 +48,7 @@
 		<table id="budget_items" class="budget_items">
 			<tr>
 				<th>description</th>
+				<th>vendor/product note</th>
 				<th>price per unit</th>
 				<th>quantity</th>
 				<th>total</th>
@@ -45,6 +58,9 @@
 			<tr>
 				<td>
 					{$budget_item->description}
+				</td>
+				<td>
+					{$budget_item->note}
 				</td>
 				<td>
 					$ {$budget_item->price|string_format:"%.2f"}
@@ -58,7 +74,7 @@
 			</tr>
 			{/foreach}
 			<tr>
-				<th colspan="3">total budget:</th>
+				<th colspan="4">total budget:</th>
 				<td>$ {$total|string_format:"%.2f"}</td>
 			</tr>
 		</table>

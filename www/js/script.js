@@ -20,19 +20,16 @@ $(document).ready(function() {
 });
 
 Dase.initPendingUpdate = function(id) {
-	$('#'+id).find('textarea').change(function() {
-		var id = $(this).attr('id');
-		var tar = id.replace('textarea','updated');
-		var submit = id.replace('textarea','submit');
-		$('#'+submit).click( function() {
-			$('#'+tar).hide();
+	$('#'+id).find('form.section').change(function() {
+		var p_alert = $(this).find('.pending');
+		p_alert.show();
+		$(this).find('input[type="submit"]').click( function() {
+			p_alert.hide();
 		});
-		$('#'+tar).show();
-		$('#'+tar).find('a').click( function() {
-			$('#'+tar).hide();
+		$(this).find('a').click( function() {
+			p_alert.hide();
 			return false;
 		});
-		//alert('you have pending changes');
 	});	
 };
 
