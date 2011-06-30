@@ -211,6 +211,7 @@ class Dase_Handler_Admin extends Dase_Handler
 				$p->getCreator();
 				$set[$p->workflow_status][] = $p;
 		}
+		ksort($set);
 		$t->assign('props', $set);
 		$r->renderResponse($t->fetch('admin_props.tpl'));
 	}
