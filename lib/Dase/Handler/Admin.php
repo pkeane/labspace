@@ -349,8 +349,8 @@ class Dase_Handler_Admin extends Dase_Handler
 				}
 				$section->type = $r->get('type');
 				$section->is_active = $r->get('is_active');
-				$section->show_date_input = $r->get('show_date_input');
-				$section->show_dollar_input = $r->get('show_dollar_input');
+			//	$section->show_date_input = $r->get('show_date_input');
+			//	$section->show_dollar_input = $r->get('show_dollar_input');
 				$section->textbox_size = $r->get('textbox_size');
 				$section->update();
 				$r->renderRedirect('admin/sections/'.$r->get('section'));
@@ -369,8 +369,8 @@ class Dase_Handler_Admin extends Dase_Handler
 			}
 			$section->type = $r->get('type');
 			$section->is_active = 1;
-			$section->show_date_input = $r->get('show_date_input');
-			$section->show_dollar_input = $r->get('show_dollar_input');
+		//	$section->show_date_input = $r->get('show_date_input');
+		//	$section->show_dollar_input = $r->get('show_dollar_input');
 			$section->insert();
 		}
 		$r->renderRedirect('admin/sections');

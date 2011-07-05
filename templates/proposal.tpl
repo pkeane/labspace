@@ -6,7 +6,7 @@
 		<a href="proposal/{$proposal->id}/preview">preview</a> |
 		<a href="proposal/{$proposal->id}/share">share</a>
 	</div>
-	<h1 class="title">Proposal: {$proposal->title}</h1>
+	<h1 class="title">Proposal: {$proposal->title} ({$proposal->id})</h1>
 	<dl id="proposal">
 		<dt>Title</dt>
 		<dd>{$proposal->title}</dd>
@@ -22,18 +22,6 @@
 		<div class="instruction_text">{$section->instruction_text|markdown}</div>
 		<div>
 			{$section->proposal_data|markdown|nl2br}
-			<dl class="section">
-				{if $section->show_date_input}
-				<dt>Date Start</dt>
-				<dd>{$section->date_start}</dd>
-				<dt>Date End</dt>
-				<dd>{$section->date_end}</dd>
-				{/if}
-				{if $section->show_dollar_input}
-				<dt>Dollar Amount</dt>
-				<dd>$ {$section->dollar_amount}</dd>
-				{/if}
-			</dl>
 			{if $section->proposal_data}
 			<a href="#" class="toggle" id="toggle_{$section->ascii_id}">[edit]</a>
 			{/if}
@@ -44,20 +32,6 @@
 				<p>
 				<textarea id="textarea_{$section->ascii_id}" class="{$section->textbox_size}" name="text">{$section->proposal_data}</textarea>
 				</p>
-				{if $section->show_date_input}
-				<p>
-				<label for="date_start">Date Start (mm-dd-yyyy)</label>
-				<input value="{$section->date_start}"  class="date" type="text" placeholder="mm-dd-yyyy" name="date_start">
-				<label for="date_end">Date End (mm-dd-yyyy)</label>
-				<input value="{$section->date_end}" class="date" type="text" placeholder="mm-dd-yyyy" name="date_end">
-				</p>
-				{/if}
-				{if $section->show_dollar_input}
-				<p>
-				<label for="dollar_amount">Dollar Amount</label>
-				$ <input class="int" type="text" value="{$section->dollar_amount}" name="dollar_amount">
-				</p>
-				{/if}
 				<p>
 				<input id="submit_{$section->ascii_id}" type="submit" value="update {$section->name}">
 				<span id="updated_{$section->ascii_id}" class="hide pending"> &lt;- Please save your changes! <a href="#">[dismiss]</a></span>

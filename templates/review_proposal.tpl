@@ -5,7 +5,7 @@
 	<div class="controls">
 		<a href="user/proposals">return to proposals list</a>
 	</div>
-	<h1 class="title">Proposal: {$proposal->title}</h1>
+	<h1 class="title">Proposal: {$proposal->title} ({$proposal->id})</h1>
 	<dl id="proposal">
 		<dt>Title</dt>
 		<dd>{$proposal->title}</dd>
@@ -21,18 +21,6 @@
 		<dd>
 		<div>
 			{$section->proposal_data|markdown|nl2br}
-			<dl class="section">
-				{if $section->show_date_input}
-				<dt>Date Start</dt>
-				<dd>{$section->date_start}</dd>
-				<dt>Date End</dt>
-				<dd>{$section->date_end}</dd>
-				{/if}
-				{if $section->show_dollar_input}
-				<dt>Dollar Amount</dt>
-				<dd>$ {$section->dollar_amount}</dd>
-				{/if}
-			</dl>
 		</div>
 		{if 'attachments' == $section->ascii_id}
 		<ul class="attachments">

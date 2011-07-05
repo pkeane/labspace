@@ -2,7 +2,7 @@
 
 {block name="content"}
 <div class="main">
-	<h1 class="title">Proposal: {$proposal->title}</h1>
+	<h1 class="title">Proposal: {$proposal->title} ({$proposal->id})</h1>
 	<dl id="proposal">
 		<hr>
 		<dt>Title</dt>

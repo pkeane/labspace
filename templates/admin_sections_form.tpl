@@ -81,26 +81,6 @@
 			</p>
 			</dd>
 			<dd>
-			<dt>Show Date Input</dt>
-			<dd>
-			<p>
-			<input type="radio" {if $section->show_date_input}checked{/if}  name="show_date_input" value="1"> yes
-			</p>
-			<p>
-			<input type="radio" {if !$section->show_date_input}checked{/if} name="show_date_input" value="0"> no 
-			</p>
-			</dd>
-			<dd>
-			<dt>Show Dollar Input</dt>
-			<dd>
-			<p>
-			<input type="radio" {if $section->show_dollar_input}checked{/if}  name="show_dollar_input" value="1"> yes
-			</p>
-			<p>
-			<input type="radio" {if !$section->show_dollar_input}checked{/if} name="show_dollar_input" value="0"> no 
-			</p>
-			</dd>
-			<dd>
 			<input type="submit" value="update section">
 			</dd>
 		</dl>
@@ -117,20 +97,6 @@
 		{if 'content' != $section->type}
 		<form method="get" action="admin/instruction/{$section->section}">
 			<textarea class="{$section->textbox_size}"></textarea>
-			{if $section->show_date_input}
-			<p>
-			<label for="date_start">Date Start (mm-dd-yyyy)</label>
-			<input class="date" type="text" placeholder="mm-dd-yyyy" name="date_start">
-			<label for="date_end">Date End (mm-dd-yyyy)</label>
-			<input class="date" type="text" placeholder="mm-dd-yyyy" name="date_start">
-			</p>
-			{/if}
-			{if $section->show_dollar_input}
-			<p>
-			<label for="dollar_amount">Dollar Amount</label>
-			$ <input class="int" type="text" name="dollar_amount">
-			</p>
-			{/if}
 			<p>
 			<input type="submit" value="update {$section->name}">
 			</p>

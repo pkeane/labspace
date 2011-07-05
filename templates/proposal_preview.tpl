@@ -11,7 +11,7 @@
 		<a href="home">home</a>
 	</div>
 	{/if}
-	<h1 class="title">Proposal: {$proposal->title}</h1>
+	<h1 class="title">Proposal: {$proposal->title} ({$proposal->id})</h1>
 	{if $proposal->submitted}
 	<h3 class="msg">Submitted by {$proposal->submitted_by} {$proposal->submitted|date_format:"%a, %b %e at %l:%M%p"}</h3>
 	{else}
@@ -32,18 +32,6 @@
 		<dd>
 		<div>
 			{$section->proposal_data|markdown|nl2br}
-			<dl class="section">
-				{if $section->show_date_input}
-				<dt>Date Start</dt>
-				<dd>{$section->date_start}</dd>
-				<dt>Date End</dt>
-				<dd>{$section->date_end}</dd>
-				{/if}
-				{if $section->show_dollar_input}
-				<dt>Dollar Amount</dt>
-				<dd>$ {$section->dollar_amount}</dd>
-				{/if}
-			</dl>
 		</div>
 		{if 'attachments' == $section->ascii_id}
 		<ul class="attachments">

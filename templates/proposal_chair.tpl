@@ -5,7 +5,7 @@
 	<div class="controls">
 		<a href="user/proposals">return to proposals list</a>
 	</div>
-	<h1 class="title">Proposal: {$proposal->title}</h1>
+	<h1 class="title">Proposal: {$proposal->title} ({$proposal->id})</h1>
 	{if $proposal->submitted}
 	<h3 class="msg">Submitted by {$proposal->submitted_by} {$proposal->submitted|date_format:"%a, %b %e at %l:%M%p"}</h3>
 	{else}

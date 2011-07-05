@@ -6,7 +6,7 @@
 		<a href="proposal/{$proposal->id}">proposal form</a> |
 		<a href="admin/proposals">return to admin proposals list</a>
 	</div>
-	<h1 class="title">Proposal: {$proposal->title}</h1>
+	<h1 class="title">Proposal: {$proposal->title} ({$proposal->id})</h1>
 	<dl id="proposal">
 		<dt>Title</dt>
 		<dd>{$proposal->title}</dd>

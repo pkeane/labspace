@@ -5,7 +5,7 @@
 	<div class="controls">
 		<a href="proposal/{$proposal->id}">return to editing</a>
 	</div>
-	<h1 class="title">Share Access to Proposal: {$proposal->title}</h1>
+	<h1 class="title">Share Access to Proposal: {$proposal->title} ({$proposal->id})</h1>
 		<dl id="propusers" class="propusers">
 			<dt>creator</dt>
 			<dd>{$proposal->creator->name} ({$proposal->creator->eid})</dd>
